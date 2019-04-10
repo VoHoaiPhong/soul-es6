@@ -1,0 +1,71 @@
+{
+  "name": "soul",
+  "version": "1.0.0",
+  "description": "The soul of me",
+  "main": "root/init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./",
+    "start": "nodemon --exec babel-node ./root/init",
+    "debug": "nodemon --nolazy --inspect-brk=9229 ./root/init.js --exec babel-node",
+    "build": "set MODE=development && webpack",
+    "deploy": "set MODE=production && webpack && npm run cp",
+    "cp": "node export",
+    "postinstall": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noquere/soul.git"
+  },
+  "keywords": [
+    "Node",
+    "Socket",
+    "Stream"
+  ],
+  "author": "nviethuan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noquere/soul/issues"
+  },
+  "homepage": "https://github.com/noquere/soul#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^2.0.1",
+    "eslint": "^5.16.0",
+    "json-loader": "^0.5.7",
+    "nodemon": "^1.18.11",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.4",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "googleapis": "^39.2.0",
+    "helmet": "^3.16.0",
+    "http-errors": "^1.7.2",
+    "is-my-json-valid": "^2.19.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.11",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.2.15",
+    "winston": "^3.2.1",
+    "ytdl-core": "^0.29.1"
+  }
+}
