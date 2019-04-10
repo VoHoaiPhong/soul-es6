@@ -11,6 +11,7 @@ import * as crypto from 'crypto';
 import { join } from 'path';
 import { logger } from './extensions';
 import * as zlib from 'zlib';
+import ApiRoutes from './src/routes';
 
 export default class Application {
   static bootstrap() {
@@ -85,11 +86,6 @@ export default class Application {
   }
 
   routes() {
-    // this.app.use(ApiRoutes.path, ApiRoutes.router);
-    this.app.use('/', (req, res) => {
-      res.json({
-        msg: 'ok'
-      });
-    });
+    this.app.use(ApiRoutes.path, ApiRoutes.router);
   }
 }

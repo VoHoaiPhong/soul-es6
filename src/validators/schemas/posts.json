@@ -1,0 +1,34 @@
+{
+  "[POST]/": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "required": true,
+        "type": "string",
+        "maxLength": 100,
+        "minLength": 0
+      },
+      "content": {
+        "required": true,
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  },
+  "[PUT]/": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "required": true,
+        "type": "string",
+        "maxLength": 100,
+        "minLength": 0
+      },
+      "content": {
+        "required": true,
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  }
+}

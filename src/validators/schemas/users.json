@@ -1,0 +1,46 @@
+{
+  "[POST]/": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "required": true,
+        "type": "string",
+        "maxLength": 36,
+        "minLength": 0
+      },
+      "password": {
+        "required": true,
+        "type": "string"
+      },
+      "firstname": {
+        "required": true,
+        "type": "string",
+        "maxLength": 100,
+        "minLength": 0
+      },
+      "lastname": {
+        "required": true,
+        "type": "string",
+        "maxLength": 100,
+        "minLength": 0
+      }
+    },
+    "additionalProperties": false
+  },
+  "[POST]/login": {
+    "type": "object",
+    "properties": {
+      "username": {
+        "required": true,
+        "type": "string",
+        "maxLength": 36,
+        "minLength": 0
+      },
+      "password": {
+        "required": true,
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  }
+}

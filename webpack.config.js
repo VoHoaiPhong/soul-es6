@@ -16,8 +16,9 @@ fs.readdirSync('node_modules')
 module.exports = {
   externals,
   entry: [
-    '@babel/polyfill',
-    join(__dirname, './root/init.js')
+    // '@babel/polyfill',
+    // join(__dirname, './root/init.js')
+    './root/init.js'
   ],
   target: 'node',
   devtool: isProd ? 'hidden-source-map' : 'cheap-eval-source-map',
