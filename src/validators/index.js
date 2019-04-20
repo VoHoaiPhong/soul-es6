@@ -1,5 +1,7 @@
 import validator from 'is-my-json-valid';
 import * as schemas from './schemas';
+import createError from 'http-errors';
+import { GET } from '../../constants';
 
 export default class Validator {
   static get validates() {
@@ -15,15 +17,31 @@ export default class Validator {
     return Validator._validate;
   }
 
-  validate(request, response, next) {
-    // get from baseUrl. Exp: /api/v1/users
-    let key = request.baseUrl.replace(/\/api\/v1\//i, '');
-    const path = request.route.path;
-    const validate = Validator.validates[key]['[' + request.method + ']' + path];
-    if (validate === undefined || validate(request.body)) {
-      next();
-    } else {
-      throw new Error(validate.error);
+  static validate(request, response, next) {
+    try {
+      // get from baseUrl. Exp: /api/v1/users
+      let key = request.baseUrl.replace(/\/api\/v1\//i, '');
+      const path = request.route.path;
+      const validate = Validator.validates[key]['[' + request.method + ']' + path];
+      if(validate === undefined) {
+        next();
+      } else {
+        switch (request.method) {
+          case GET:
+            if(!validate(request.query)) {
+              throw validate.error;
+            }
+            break;
+          default:
+            if(!validate(request.body)) {
+              throw validate.error;
+            }
+            break;
+        }
+        next();
+      }
+    } catch (error) {
+      next(createError(422, error));
     }
   }
 }

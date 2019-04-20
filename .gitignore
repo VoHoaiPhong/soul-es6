@@ -68,3 +68,8 @@ yarn.lock
 
 # dist
 dist/
+
+#key
+key/
+
+*.html

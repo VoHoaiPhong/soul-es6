@@ -1,0 +1,20 @@
+{
+  "[POST]/": {
+    "type": "object",
+    "properties": {
+      "youtubeId": {
+        "required": true,
+        "type": "string",
+        "maxLength": 11,
+        "minLength": 0
+      },
+      "status": {
+        "required": false,
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "additionalProperties": false
+  }
+}

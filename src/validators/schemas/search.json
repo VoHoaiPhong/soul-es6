@@ -1,0 +1,13 @@
+{
+  "[GET]/": {
+    "type": "object",
+    "properties": {
+      "q": {
+        "required": true,
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "additionalProperties": false
+  }
+}

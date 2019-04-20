@@ -13,6 +13,8 @@ import { logger } from './extensions';
 import * as zlib from 'zlib';
 import ApiRoutes from './src/routes';
 
+import { Database } from './src/helpers/database';
+
 export default class Application {
   static bootstrap() {
     return new Application();
@@ -28,8 +30,8 @@ export default class Application {
     this.app.use(this.errorHandler);
   }
 
-  config() {
-    // Database.bootstrap();
+  config = () => {
+    new Database();
     // new YoutubeAPI();
     this.app.set('views', join(__dirname, 'views'));
     this.app.set('view engine', 'ejs');
@@ -61,31 +63,30 @@ export default class Application {
     }));
   }
 
-  genKey() {
+  genKey = () => {
     const prime_length = 60;
     const diffHell = crypto.createDiffieHellman(prime_length);
     diffHell.generateKeys('base64');
     return diffHell.getPrivateKey('base64');
   }
 
-  pagginator(req, res, next) {
-    req.query.pageIndex = req.query.pageIndex || 1;
-    req.query.pageSize = req.query.pageSize || 10;
+  pagginator = (request, response, next) => {
+    response.locals.pageIndex = request.query.pageIndex || 1;
+    response.locals.pageSize = request.query.pageSize || 10;
     next();
   }
 
-  catchNotFound(request, response, next) {
+  catchNotFound = (request, response, next) => {
     next(createError(404));
   }
 
-  errorHandler(err, request, response) {
-    response.status(err.status || 500);
-    response.json({
-      msg: err.message
-    });
+  errorHandler = (error, request, response, next) => {
+    response.status(error.status || 500);
+    response.json({error: error.original || error});
+    next();
   }
 
-  routes() {
+  routes = () => {
     this.app.use(ApiRoutes.path, ApiRoutes.router);
   }
 }

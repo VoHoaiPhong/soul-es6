@@ -12,5 +12,6 @@ parserOptions:
 rules: 
   no-console: 0
   semi: 1
+  no-trailing-spaces: 1
 
 parser: 'babel-eslint'

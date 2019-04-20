@@ -30,7 +30,7 @@
     {
       "type": "node",
       "request": "attach",
-      "name": "Attach",
+      "name": "Attach to debug server",
       "port": 9229
     },
     {

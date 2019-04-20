@@ -1,8 +1,7 @@
 const { join, resolve } = require('path');
 const fs = require('fs');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-
+const TerserPlugin = require('terser-webpack-plugin');
 const mode = process.env.MODE.toUpperCase().includes('PRODUCTION') ? 'production' : 'development';
 const isProd = mode.includes('production');
 
@@ -16,8 +15,7 @@ fs.readdirSync('node_modules')
 module.exports = {
   externals,
   entry: [
-    // '@babel/polyfill',
-    // join(__dirname, './root/init.js')
+    '@babel/polyfill',
     './root/init.js'
   ],
   target: 'node',
@@ -37,9 +35,19 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            presets: [
+              ['@babel/preset-env', {
+                targets: {
+                  node: 'current'
+                }
+              }]
+            ],
             plugins: [
-              '@babel/plugin-proposal-class-properties'
+              '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-transform-spread',
+              ['@babel/plugin-transform-classes', {
+                'loose': true
+              }]
             ]
           }
         }
@@ -58,15 +66,12 @@ module.exports = {
     new CleanWebpackPlugin()
   ],
   optimization: {
-    minimizer: [new UglifyJSPlugin({
-      cache: true,
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
         parallel: true,
-        uglifyOptions: {
-          compress: false,
-          ecma: 6,
-          mangle: true,
-        },
         sourceMap: true
-    })]
+      })
+    ]
   }
 };
