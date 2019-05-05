@@ -17,7 +17,6 @@ export class UserController extends BaseController {
       request.body.password = Encryption.hashing(request.body.password);
       super.create(request, response, next);
     } catch (error) {
-      console.log(error);
       next(createError(500, error.message));
     }
   }
