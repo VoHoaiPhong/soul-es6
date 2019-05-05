@@ -81,8 +81,9 @@ export default class Application {
   }
 
   errorHandler = (error, request, response, next) => {
+    console.log(error);
     response.status(error.status || 500);
-    response.json({error: error.original || error});
+    response.json({error});
     next();
   }
 

@@ -32,7 +32,7 @@ export const DB_CONFIG = {
   pool,
   username,
   password,
-  port: 9999,
+  port: 3306,
   database,
   replication
 };

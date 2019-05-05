@@ -43,11 +43,7 @@ module.exports = {
               }]
             ],
             plugins: [
-              '@babel/plugin-proposal-class-properties',
-              '@babel/plugin-transform-spread',
-              ['@babel/plugin-transform-classes', {
-                'loose': true
-              }]
+              '@babel/plugin-proposal-class-properties'
             ]
           }
         }
